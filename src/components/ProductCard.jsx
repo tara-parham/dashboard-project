@@ -1,14 +1,19 @@
-import { useState } from "react";
-
-export default function ProductCard({ name, price, stock }) {
+export default function ProductCard({
+  id,
+  name,
+  price,
+  stock,
+  count,
+  onCountChange,
+}) {
   //state
-  const [count, setCount] = useState(0);
+
   //function
   function handleAdd() {
-    if (stock > count) setCount(count + 1);
+    if (stock > count) onCountChange(id, count + 1);
   }
   function handleRemove() {
-    if (count > 0) setCount(count - 1);
+    if (count > 0) onCountChange(id, count - 1);
   }
   //return
   return (
