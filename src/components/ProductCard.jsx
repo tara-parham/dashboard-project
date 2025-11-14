@@ -1,19 +1,23 @@
-export default function ProductCard({
-  id,
-  name,
-  price,
-  stock,
-  count,
-  onCountChange,
-}) {
-  //state
+import { useContext } from "react";
+import { ProductContext } from "../context/ProductContext";
 
+export default function ProductCard({ id, name, price, stock, count }) {
+  //context
+  const {products, setProducts} = useContext(ProductContext)
   //function
   function handleAdd() {
-    if (stock > count) onCountChange(id, count + 1);
+    if (stock > count){
+      setProducts(prev=>(
+        prev.map((p)=>(p.id === id ? {...p , count:p.count + 1} : p))
+      ))
+    }
   }
   function handleRemove() {
-    if (count > 0) onCountChange(id, count - 1);
+    if (count > 0){
+      setProducts(prev=>(
+        prev.map((p)=>p.id === id ? {...p, count:p.count-1} : p)
+      ))
+    }
   }
   //return
   return (
@@ -21,7 +25,6 @@ export default function ProductCard({
       <h2 className="font-semibold text-lg">{name}</h2>
       <p className="text-gray-600">💰 {price} €</p>
       <p className="text-sm text-gray-500">Stock: {stock}</p>
-
       <div className="flex items-center gap-2">
         <button
           onClick={handleRemove}

@@ -1,4 +1,9 @@
-export default function TotalSummary({ products }) {
+import { useContext } from "react";
+import { ProductContext } from "../context/ProductContext";
+
+export default function TotalSummary() {
+  //context
+  const { products } = useContext(ProductContext);
   const total = products.reduce(
     (sum, item) => sum + item.count * item.price,
     0
