@@ -1,16 +1,28 @@
-import { useContext } from "react";
+import { use, useCallback, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
 import useProductCount from "../hooks/useProductCount";
 
 export default function ProductDetail() {
+  //useParams
   const { id } = useParams();
+  //useContext
   const { products } = useContext(ProductContext);
+  //custom hook
   const { count, decrement, increment } = useProductCount(id);
+  //variable
   const product = products.find((p) => p.id === Number(id));
-  console.log(count);
+  //useCallback
+  const handleIncrement = useCallback(() => increment(id), [increment, id]);
+  const handleDecrement = useCallback(() => {
+    decrement(id);
+  }, [decrement, id]);
+  //condition
   if (!product)
     return <h2 className="text-red-600 font-bold">Product not found</h2>;
+  console.log("handleIncrement function:", handleIncrement);
+console.log("handleDecrement function:", handleDecrement);
+  //return
   return (
     <section className="p-4 border rounded-2xl shadow-md flex flex-col gap-3 bg-white">
       <h2 className="font-semibold text-lg">{product.name}</h2>
@@ -19,14 +31,14 @@ export default function ProductDetail() {
       <p className="text-sm text-gray-500">🆔 Procut ID: {product.id}</p>
       <div className="flex items-center gap-2">
         <button
-          onClick={decrement}
+          onClick={handleDecrement}
           className="px-2 py-1 bg-red-500 text-white rounded"
         >
           -
         </button>
         <span className="w-8 text-center">{count}</span>
         <button
-          onClick={increment}
+          onClick={handleIncrement}
           className="px-2 py-1 bg-red-500 text-white rounded"
         >
           +

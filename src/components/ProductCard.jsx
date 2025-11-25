@@ -1,6 +1,8 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
-export default function ProductCard({ id, name, price }) {
+function ProductCard({ id, name, price }) {
+  console.log("ProductCard rendered:", id);
   return (
     <section className="p-4 border rounded-2xl shadow-md flex flex-col gap-3 bg-white">
       <h2 className="font-semibold text-lg">{name}</h2>
@@ -15,3 +17,5 @@ export default function ProductCard({ id, name, price }) {
     </section>
   );
 }
+
+export default memo(ProductCard);
