@@ -5,7 +5,7 @@ export default function TotalSummary() {
   //context
   const { products } = useContext(ProductContext);
   const total = products.reduce(
-    (sum, item) => sum + item.count * item.price,
+    (sum, item) => sum + Number(item.count) * Number(item.price),
     0
   );
   return (

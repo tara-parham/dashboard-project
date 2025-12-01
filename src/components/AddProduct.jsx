@@ -3,7 +3,7 @@ import { ProductContext } from "../context/ProductContext";
 
 export default function AddProduct() {
   //context
-  const { products, setProducts } = useContext(ProductContext);
+  const { products, dispatch } = useContext(ProductContext);
   //state
   const [form, setForm] = useState({
     name: "",
@@ -25,11 +25,11 @@ export default function AddProduct() {
       stock: Number(form.stock),
       count: 0,
     };
-    setProducts([...products, newProduct]);
+    dispatch({ type: "ADD_PRODUCT", payload: newProduct });
     setForm({
       name: "",
       price: "",
-      stocke: "",
+      stock: "",
     });
   };
   const handleChange = (e) => {
