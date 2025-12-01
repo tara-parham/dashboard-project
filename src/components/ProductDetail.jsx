@@ -1,4 +1,4 @@
-import { use, useCallback, useContext } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
 import useProductCount from "../hooks/useProductCount";
@@ -12,7 +12,6 @@ export default function ProductDetail() {
   const { count, decrement, increment } = useProductCount(id);
   //variable
   const product = products.find((p) => p.id === Number(id));
-
   //condition
   if (!product)
     return <h2 className="text-red-600 font-bold">Product not found</h2>;
