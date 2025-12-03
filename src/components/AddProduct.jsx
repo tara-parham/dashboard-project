@@ -19,7 +19,7 @@ export default function AddProduct() {
     if (Object.keys(errorMessage).length > 0) return;
     //create new product
     const newProduct = {
-      id: Date.now(),
+      id: Math.floor(100000 + Math.random() * 900000),
       name: form.name,
       price: Number(form.price),
       stock: Number(form.stock),
@@ -72,6 +72,11 @@ export default function AddProduct() {
       />
       {error.stock && <p className="text-red-500">{error.stock}</p>}
       <button type="submit">Submit</button>
+      {!error && (
+        <p className="text-green-500 font-bold">
+          Product added successfully ✅{" "}
+        </p>
+      )}
     </form>
   );
 }

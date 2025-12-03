@@ -21,7 +21,9 @@ export default function ProductDetail() {
   return (
     <section className="p-4 border rounded-2xl shadow-md flex flex-col gap-3 bg-white">
       <h2 className="font-semibold text-lg">{product.name}</h2>
-      <p className="text-gray-600">💰 Price: {product.price} €</p>
+      <p className="text-gray-600">
+        💰 Price: {product.price.toLocaleString()} €
+      </p>
       <p className="text-sm text-gray-500">📦 Stock: {product.stock}</p>
       <p className="text-sm text-gray-500">🆔 Procut ID: {product.id}</p>
       <div className="flex items-center gap-2">
