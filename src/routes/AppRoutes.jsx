@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import ProductList from "../components/ProductList";
 import { lazy, Suspense } from "react";
 import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
+import TotalSummary from "../components/TotalSummary";
 
 export default function AppRoutes() {
   const ProductDetail = lazy(() => import("../components/ProductDetail"));
@@ -19,6 +20,7 @@ export default function AppRoutes() {
         />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/add" element={<AddProduct />} />
+        <Route path="/total" element={<TotalSummary />} />
       </Routes>
     </Suspense>
   );

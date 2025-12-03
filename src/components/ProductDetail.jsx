@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
 import useProductCount from "../hooks/useProductCount";
+import TotalSummary from "./TotalSummary";
 
 export default function ProductDetail() {
   //useParams
@@ -37,6 +38,7 @@ export default function ProductDetail() {
           +
         </button>
       </div>
+      <TotalSummary />
     </section>
   );
 }
