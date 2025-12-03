@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
 import useProductCount from "../hooks/useProductCount";
 import TotalSummary from "./TotalSummary";
+import MiniSummary from "./MiniSummary";
 
 export default function ProductDetail() {
   //useParams
@@ -38,7 +39,7 @@ export default function ProductDetail() {
           +
         </button>
       </div>
-      <TotalSummary />
+      <MiniSummary />
     </section>
   );
 }
