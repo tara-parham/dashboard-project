@@ -12,6 +12,9 @@ export default function ProductReducer(state, action) {
       return state.map((p) =>
         p.id === action.id && p.count > 0 ? { ...p, count: p.count - 1 } : p
       );
+    case "DELETE":
+      return state.filter(p=>p.id !== action.id)
+      
     default:
       return state;
   }
