@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
+import { Link } from "react-router-dom";
 
 export default function AddProduct() {
   //context
   const { products, dispatch } = useContext(ProductContext);
+
   //state
   const [form, setForm] = useState({
     name: "",
@@ -11,6 +13,8 @@ export default function AddProduct() {
     stock: "",
   });
   const [error, setError] = useState({});
+  const [success, setSuccess] = useState(false);
+
   //function
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,6 +35,7 @@ export default function AddProduct() {
       price: "",
       stock: "",
     });
+    setSuccess(true);
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,6 +49,7 @@ export default function AddProduct() {
     if (Number(form.stock) <= 0) newError.stock = "Stock must be positive";
     return newError;
   };
+
   //return
   return (
     <form
@@ -71,11 +77,19 @@ export default function AddProduct() {
         placeholder="Stock"
       />
       {error.stock && <p className="text-red-500">{error.stock}</p>}
-      <button type="submit">Submit</button>
-      {!error && (
-        <p className="text-green-500 font-bold">
-          Product added successfully ✅{" "}
-        </p>
+      <button type="submit">Add Product</button>
+      {success && (
+        <div className="text-center mt-8">
+          <p className="text-green-500 font-bold text-lg mb-5">
+            Product added successfully ✅
+          </p>
+          <Link
+            to="/"
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+          >
+            Continue
+          </Link>
+        </div>
       )}
     </form>
   );
